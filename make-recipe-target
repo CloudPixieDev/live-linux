@@ -1,0 +1,46 @@
+#!/bin/bash
+
+basedir=$(pwd)
+builddir=builds
+recipedir=descriptions
+declare -a recipes=( $(ls -1d ${recipedir}/* | cut -d'/' -f2) )
+
+function usage()
+{
+    cat<<EOF
+
+Usage: make-recipe-target <recipe> <target>
+
+Where:
+
+    <recipe> is the descriptions/<dirname> for the kiwi description to build
+             possibilites include: ${recipes[@]}
+
+    <target> is one of the Makefile targets for that recipe
+    	     use 'all' to get help from the makefile for the given recipe
+
+EOF
+}
+
+if [ $# -eq 1 ]; then
+    recipe=$1
+    target=all
+elif [ $# -eq 2 ]; then
+    recipe=$1
+    target=$2
+else
+    usage
+    exit 1
+fi
+
+if [ ! -d ${basedir}/${builddir} ]; then
+    mkdir ${basedir}/${builddir}
+fi
+
+if [ ! -d ${recipedir}/${recipe} ]; then
+   usage
+   echo "$recipe is not a valid kiwi dir in $recipedir"
+   exit 1
+fi
+
+(cd ${recipedir}/${recipe} && make $target RECIPE=${recipe} BASEDIR=${basedir})

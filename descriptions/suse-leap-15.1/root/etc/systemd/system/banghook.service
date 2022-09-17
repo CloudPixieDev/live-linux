@@ -1,0 +1,11 @@
+# /etc/systemd/system/banghook.service
+[Unit]
+Description=Bang Hook
+After=sshd.service ipmi.service lldpd.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/sesame/sbin/bang-hook.sh
+
+[Install]
+WantedBy=multi-user.target
