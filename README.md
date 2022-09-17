@@ -53,6 +53,15 @@ Passing a recipe without a make target produces this help:
         'disk' for an image to boot and install to a menu selected target disk
     
 
+Build the ISO using
+
+    ./make-recipe-target suse-leap-15.1 target
+
+and this will drop the artifacts in
+
+    ./builds/suse-leap-15.1
+	  
+
 ## dracut livenet
 
 The ISO Live PXE makes use of the (Fedora LiveOS)[https://fedoraproject.org/wiki/LiveOS_image] image format and (dracut tooling)[https://github.com/dracutdevs/dracut/].
@@ -65,7 +74,7 @@ The kernel args in play w/iPXE vars for BOOTIF MAC and pxe server:
 
 (SUSE)[https://www.suse.com/] sponsors an opensource project for image building called (KIWI)[https://osinside.github.io/kiwi/]. This tool is used to create the ISO Hybrid image and then embed that same image in an image.
 
-The recipe uses the [KIWI ISO Hybrid Live Image](https://osinside.github.io/kiwi/building/build_live_iso.html) with the (image description)[https://github.com/OSInside/kiwi-descriptions] based on suse-leap-15.4, with `profile=LiveDracut` and with this latest profile it includes the needed bootstrap packages.
+The recipe uses the [KIWI ISO Hybrid Live Image](https://osinside.github.io/kiwi/building_images/build_live_iso.html#) with the (image description)[https://github.com/OSInside/kiwi-descriptions] based on suse-leap-15.4, with `profile=LiveDracut` and with this latest profile it includes the needed bootstrap packages.
 
 The rest of the RPMs needed for recon are added to the same config.xml. The remaining logic and configuration and services go into the overlay 'root' area of the build with any permissions or service starting in kiwi config.sh.
 
