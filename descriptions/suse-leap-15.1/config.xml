@@ -136,6 +136,7 @@
     <package name="httperf"/>
     <package name="hwdata"/>
     <package name="hwinfo"/>
+    <package name="i2c-tools"/>
     <package name="info"/>
     <package name="iperf"/>
     <package name="ipmitool"/>
