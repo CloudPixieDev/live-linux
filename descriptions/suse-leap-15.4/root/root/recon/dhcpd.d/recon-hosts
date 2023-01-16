@@ -1,0 +1,9 @@
+# Hosts in RECON
+
+group {
+  use-host-decl-names on;
+  default-lease-time 3600;
+  max-lease-time 7200;
+
+  host bmc-node04 {hardware ethernet 24:8a:07:88:3d:98; fixed-address 192.168.219.4;}
+}
